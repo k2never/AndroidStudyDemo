@@ -10,4 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.k2never.androidstudydemo.androidlifecycle.FirstActivity">
 
+    <fragment
+        android:id="@+id/fragment_inner"
+        android:name="com.k2never.androidstudydemo.androidlifecycle.InnerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
 </RelativeLayout>

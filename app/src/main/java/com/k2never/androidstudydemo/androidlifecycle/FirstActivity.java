@@ -1,5 +1,6 @@
 package com.k2never.androidstudydemo.androidlifecycle;
 
+import android.net.Uri;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.view.View;
 
 import com.k2never.androidstudydemo.R;
 
-public class FirstActivity extends AppCompatActivity {
+public class FirstActivity extends AppCompatActivity implements InnerFragment.OnFragmentInteractionListener{
     public static final String TAG = "AndroidLifeCycle";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,5 +67,10 @@ public class FirstActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
 
         Log.i(TAG, "onRestoreInstanceState...");
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
