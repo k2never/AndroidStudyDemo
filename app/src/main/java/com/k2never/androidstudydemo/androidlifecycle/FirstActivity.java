@@ -1,12 +1,15 @@
 package com.k2never.androidstudydemo.androidlifecycle;
 
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.PersistableBundle;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
+
 
 import com.k2never.androidstudydemo.R;
 
@@ -17,7 +20,13 @@ public class FirstActivity extends AppCompatActivity implements InnerFragment.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
 
-        Log.i(TAG, "onCreate...     The activity is being created.");
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        InnerFragment fragment = new InnerFragment();
+        fragmentTransaction.add(R.id.fragment_added, fragment);
+        fragmentTransaction.commit();
+
+        Log.i(TAG, "onCreate...      The activity is being created.");
     }
 
     @Override
@@ -30,7 +39,6 @@ public class FirstActivity extends AppCompatActivity implements InnerFragment.On
     @Override
     protected void onResume() {
         super.onResume();
-
         Log.i(TAG, "onResume...     The activity has become visible (it is now \"resumed\").");
     }
 

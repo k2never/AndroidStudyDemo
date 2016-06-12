@@ -1,11 +1,13 @@
 package com.k2never.androidstudydemo.androidlifecycle;
 
+
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,7 +65,7 @@ public class InnerFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
 
-        Log.i(TAG, "onAttach...      Called when the fragment has been associated with the activity.");
+        Log.i(TAG, "onAttach(Context)...         Called when the fragment has been associated with the activity.");
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
@@ -72,9 +74,15 @@ public class InnerFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        Log.i(TAG, "onAttach(Activity)...         Called when the fragment has been associated with the activity.");
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate...      The system calls this when creating the fragment.");
+        Log.i(TAG, "onCreate...         The system calls this when creating the fragment.");
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -84,14 +92,14 @@ public class InnerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.i(TAG, "onCreateView...      Called to create the view hierarchy associated with the fragment.");
+        Log.i(TAG, "onCreateView...     Called to create the view hierarchy associated with the fragment.");
         return inflater.inflate(R.layout.fragment_inner, container, false);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.i(TAG, "onActivityCreated...      Called when the activity's onCreate() method has returned.");
+        Log.i(TAG, "onActivityCreated...Called when the activity's onCreate() method has returned.");
     }
 
     @Override
@@ -109,7 +117,7 @@ public class InnerFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        Log.i(TAG, "onPause...      The system calls this method as the first indication that the user is leaving the fragment.");
+        Log.i(TAG, "onPause...          The system calls this method as the first indication that the user is leaving the fragment.");
     }
 
     @Override
@@ -121,7 +129,7 @@ public class InnerFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.i(TAG, "onDestroyView...      Called when the view hierarchy associated with the fragment is being removed.");
+        Log.i(TAG, "onDestroyView...    Called when the view hierarchy associated with the fragment is being removed.");
     }
 
     @Override
@@ -134,7 +142,7 @@ public class InnerFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-        Log.i(TAG, "onDetach...      Called when the fragment is being disassociated from the activity.");
+        Log.i(TAG, "onDetach...         Called when the fragment is being disassociated from the activity.");
     }
 
     /**
